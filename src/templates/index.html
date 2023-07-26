@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Support</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 97%;
+            margin: 20px;
+            align
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            margin-left: 3%;
+        }
+
+        form {
+            margin-left: 3%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <div class="logo">AI-Support</div>
+        <nav>
+            <ul>
+                <li><a href="/get_all_messages">Main page</a></li>
+                <li><a href="/stats">Statistics</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2>Tickets</h2>
+
+    <form action="{{ url_for('apply_filters') }}" method="GET">
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="all">All</option>
+            <option value="done">Done</option>
+            <option value="waiting">Waiting</option>
+        </select>
+
+        <label for="sort">Sort:</label>
+        <select name="sort" id="sort">
+            <option value="new">Old</option>
+            <option value="old">New</option>
+        </select>
+
+        <label for="label">Label:</label>
+        <select name="label" id="label">
+            <option value="">All</option>
+            <option value="ACCOUNT">ACCOUNT</option>
+            <option value="CANCELLATION_FEE">CANCELLATION_FEE</option>
+            <option value="CONTACT">CONTACT</option>
+            <option value="DELIVERY">DELIVERY</option>
+            <option value="FEEDBACK">FEEDBACK</option>
+            <option value="INVOICES">INVOICES</option>
+            <option value="NEWSLETTER">NEWSLETTER</option>
+            <option value="ORDER">ORDER</option>
+            <option value="PAYMENT">PAYMENT</option>
+            <option value="REFUNDS">REFUNDS</option>
+            <option value="SHIPPING">SHIPPING</option>
+        </select>
+
+        <button type="submit">Apply</button>
+    </form>
+
+    <table>
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
+            <th>Actions</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+            <td>
+                {% if row[5] == 'Waiting' %}
+                <a href="{{ url_for('view_chat', chat_id=row[1], ticket_text=row[3], id=row[0]) }}">View Chat</a>
+                {% else %}
+                <span style="color: gray;">View Chat (Disabled)</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
