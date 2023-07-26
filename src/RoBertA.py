@@ -25,12 +25,13 @@ def classify(text):
 
     with torch.no_grad():
         logits = outputs.logits
-        predictions.extend(torch.sigmoid(logits).cpu().numpy())
-        predictions = (np.array(predictions) >= 0.5).astype(int)
-    
+        pred = torch.softmax(logits, dim=1)
+        predicted_onehot = torch.zeros_like(pred)
+        predicted_onehot.scatter_(1, torch.argmax(pred, dim=1).unsqueeze(1), 1)
+        
     # import encoder/decoder and decode predictions
     encoder_path = os.path.join(parent_directory, "binary_files/onehot_encoder.joblib")
     encoder = joblib.load(encoder_path)
-    result = encoder.inverse_transform(predictions)
+    result = encoder.inverse_transform(predicted_onehot)
 
     return result[0][0]
