@@ -10,3 +10,5 @@
 <image src="/img/Telegram_interface.png" alt="Интерфейса телеграмм для приема обращений в службу поддержки">
 
 ## Сборка и запуск проекта
+1. Скачать папку binary_files и положить ее в директирию в ту же, где лежит src [ссылка на гугл драйв](https://drive.google.com/drive/folders/1Z1I8zdrQaM1V76g6IMhsXjKADshBYK2J?usp=sharing)
+2. 
