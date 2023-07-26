@@ -11,8 +11,7 @@
 
 ## Сборка и запуск проекта
 1. Скачать папку binary_files и положить ее в директирию в ту же, где лежит src [ссылка на гугл драйв](https://drive.google.com/drive/folders/1Z1I8zdrQaM1V76g6IMhsXjKADshBYK2J?usp=sharing)
-2. Зайти через консоль и перейти в корневуюю папка, где лежат папки src, database, binary_files и т.п. И прописать команду <pre><code>```pip install -r requirements.txt
-```</code></pre>
+2. Зайти через консоль и перейти в корневуюю папка, где лежат папки src, database, binary_files и т.п. И прописать команду <pre><code>```pip install -r requirements.txt```</code></pre>
 3. Запустив main.py, можно зайти в телеграмм бота и написать обращение.
 4. Запустив app.py, станет доступным веб-интерфейс по loopback адресу на вашем устройстве. 
 
