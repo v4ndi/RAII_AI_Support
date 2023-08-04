@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime
 import RoBertA
 
-TOKEN = '6414676263:AAFwGNELqRMtUvXBTIg3vmqTqZJiNyDa4Ng'
+# TOKEN = ''
 bot = telebot.TeleBot(TOKEN)
 chat_states = {}
 db_file = "database/messages.db"
