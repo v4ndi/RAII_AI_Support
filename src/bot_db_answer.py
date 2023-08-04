@@ -1,7 +1,7 @@
 import sqlite3
 import telebot 
 
-api_token = "6414676263:AAFwGNELqRMtUvXBTIg3vmqTqZJiNyDa4Ng"
+# api_token = ""
 
 def update_status_by_chat_id(db_file, chat_id, text, id):
     try:
